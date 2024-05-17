@@ -10,6 +10,7 @@ import java.util.List;
 import com.java.tms.model.Vehicles;
 import com.java.tms.util.DBConnUtil;
 import com.java.tms.util.DBPropertyUtil;
+import com.java.myexceptions.VechileNotFoundException;
 
 public class VehiclesDaoImpl implements VehiclesDao{
 
@@ -41,7 +42,7 @@ public class VehiclesDaoImpl implements VehiclesDao{
 	
 	
 	@Override
-	public Vehicles searchByVehicle(int vehicleId) throws ClassNotFoundException, SQLException {
+	public Vehicles searchByVehicle(int vehicleId) throws ClassNotFoundException, SQLException,VechileNotFoundException {
 	    String connStr = DBPropertyUtil.connectionString("db");
 	    connection = DBConnUtil.getConnection(connStr);
 	    String cmd = "SELECT * FROM Vehicles WHERE VehicleId=?";
@@ -57,10 +58,9 @@ public class VehiclesDaoImpl implements VehiclesDao{
 	        vehicle.setStatus(rs.getString("Status"));
 	        return vehicle;
 	    } else {
-	        return null; // Vehicle not found
-	    }
-	}
-
+            throw new VechileNotFoundException("Vehicle not found for vehicleId: " + vehicleId);
+        }
+    } 
 
 	@Override
     public boolean insertVehicle(Vehicles vehicle) throws ClassNotFoundException, SQLException {

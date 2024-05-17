@@ -1,5 +1,7 @@
 package com.java.tms.model;
 
+import java.util.Objects;
+
 public class Vehicles {
 
 	private int vehicleid;
@@ -59,8 +61,29 @@ public class Vehicles {
 		this.status = status;
 	}
 	
+	    @Override
+	    public int hashCode() {
+	        return Objects.hash(vehicleid, model, capacity, type, status);
+	    }
+
+	    @Override
+	    public boolean equals(Object obj) {
+	        if (this == obj) {
+	            return true;
+	        }
+	        if (obj == null || getClass() != obj.getClass()) {
+	            return false;
+	        }
+	        Vehicles vehicle = (Vehicles) obj;
+	        return vehicleid == vehicle.vehicleid &&
+	               Double.compare(vehicle.capacity, capacity) == 0 &&
+	               Objects.equals(model, vehicle.model) &&
+	               Objects.equals(type, vehicle.type) &&
+	               Objects.equals(status, vehicle.status);
+	    }
+	}
+
+	 
+	 
 	
-	
-	
-	
-}
+

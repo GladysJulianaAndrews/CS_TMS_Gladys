@@ -1,6 +1,8 @@
 package com.java.tms.main;
 
 
+import com.java.myexceptions.BookingNotFoundExceptionMain;
+import com.java.myexceptions.VechileNotFoundException;
 import com.java.tms.dao.TransportManagementServiceDao;
 import com.java.tms.dao.TransportManagementServiceDaoImpl;
 
@@ -8,7 +10,7 @@ import java.util.Scanner;
 
 public class TransportManagementApp {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BookingNotFoundExceptionMain, VechileNotFoundException {
         TransportManagementServiceDao service = new TransportManagementServiceDaoImpl();
         Scanner scanner = new Scanner(System.in);
 

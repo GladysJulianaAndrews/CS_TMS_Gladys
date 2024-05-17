@@ -20,7 +20,7 @@ public class BookingMain {
         int tripId = sc.nextInt();
         System.out.println("Enter Passenger ID: ");
         int passengerId = sc.nextInt();
-        sc.nextLine(); // Consume newline
+        sc.nextLine(); 
         System.out.println("Enter Booking Date (YYYY-MM-DD HH:MM:SS): ");
         String bookingDate = sc.nextLine();
 

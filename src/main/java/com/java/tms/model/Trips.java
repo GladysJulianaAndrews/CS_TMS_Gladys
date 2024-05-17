@@ -1,5 +1,6 @@
 package com.java.tms.model;
 
+import java.util.Objects;
 
 public class Trips {
 
@@ -87,10 +88,34 @@ public class Trips {
 		this.triptype = triptype;
 		this.maxpassengers = maxpassengers;
 		this.driverid = driverid;
-	}
+	} 
 
 	
-	
-	
-	
+	@Override
+    public int hashCode() {
+        return Objects.hash(tripid, vehicleid, routeid, departuredate, arrivaldate, status, triptype, maxpassengers, driverid);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Trips trip = (Trips) obj;
+        return tripid == trip.tripid &&
+               vehicleid == trip.vehicleid &&
+               routeid == trip.routeid &&
+               maxpassengers == trip.maxpassengers &&
+               driverid == trip.driverid &&
+               Objects.equals(departuredate, trip.departuredate) &&
+               Objects.equals(arrivaldate, trip.arrivaldate) &&
+               Objects.equals(status, trip.status) &&
+               Objects.equals(triptype, trip.triptype);
+    }
 }
+	
+	
+ 

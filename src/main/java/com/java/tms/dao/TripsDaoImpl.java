@@ -32,11 +32,12 @@ public class TripsDaoImpl implements TripsDao {
         int rowsAffected = pst.executeUpdate();
         return rowsAffected > 0;
     }
+    
     @Override
     public boolean cancelTrip(int tripId) throws ClassNotFoundException, SQLException {
         String connStr = DBPropertyUtil.connectionString("db");
         connection = DBConnUtil.getConnection(connStr);
-        String cmd = "DELETE FROM Trips WHERE TripID=?";
+        String cmd = "UPDATE Trips SET Status = 'Cancelled' WHERE TripID=?";
         pst = connection.prepareStatement(cmd);
         pst.setInt(1, tripId);
         int rowsAffected = pst.executeUpdate();

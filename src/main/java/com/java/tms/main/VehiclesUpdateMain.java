@@ -2,18 +2,20 @@ package com.java.tms.main;
 
 import java.sql.SQLException;
 import java.util.Scanner;
+
+import com.java.myexceptions.VechileNotFoundException;
 import com.java.tms.dao.VehiclesDao;
 import com.java.tms.dao.VehiclesDaoImpl;
 import com.java.tms.model.Vehicles;
 
 public class VehiclesUpdateMain {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws VechileNotFoundException {
         VehiclesUpdateMain vehiclesUpdateMain = new VehiclesUpdateMain();
         vehiclesUpdateMain.updateVehicleLogic();
     }
 
-    public void updateVehicleLogic() {
+    public void updateVehicleLogic() throws VechileNotFoundException {
         Scanner sc = new Scanner(System.in);
         VehiclesDao dao = new VehiclesDaoImpl();
 
@@ -53,7 +55,7 @@ public class VehiclesUpdateMain {
                     vehicle.setStatus(status);
                 }
                 
-                // Perform update
+                
                 if (dao.updateVehicle(vehicle)) {
                     System.out.println("Vehicle updated successfully.");
                 } else {

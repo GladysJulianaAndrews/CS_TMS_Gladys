@@ -2,17 +2,19 @@ package com.java.tms.main;
 
 import java.sql.SQLException;
 import java.util.Scanner;
+
+import com.java.myexceptions.BookingNotFoundExceptionMain;
 import com.java.tms.dao.BookingDao;
 import com.java.tms.dao.BookingDaoImpl;
 
 public class BookingCancelMain {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BookingNotFoundExceptionMain {
         BookingCancelMain bookingCancelMain = new BookingCancelMain();
         bookingCancelMain.cancelBookingLogic();
     }
 
-    public void cancelBookingLogic() {
+    public void cancelBookingLogic() throws BookingNotFoundExceptionMain {
         Scanner sc = new Scanner(System.in);
         BookingDao bookingsDao = new BookingDaoImpl();
 

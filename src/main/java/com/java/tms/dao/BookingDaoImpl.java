@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.java.myexceptions.BookingNotFoundExceptionMain;
 import com.java.tms.model.Booking;
 import com.java.tms.util.DBConnUtil;
 import com.java.tms.util.DBPropertyUtil;
@@ -30,14 +31,18 @@ public class BookingDaoImpl implements BookingDao {
     }
 
     @Override
-    public boolean cancelBooking(int bookingId) throws ClassNotFoundException, SQLException {
+    public boolean cancelBooking(int bookingId) throws ClassNotFoundException, SQLException, BookingNotFoundExceptionMain {
         String connStr = DBPropertyUtil.connectionString("db");
         connection = DBConnUtil.getConnection(connStr);
         String cmd = "UPDATE Bookings SET Status='Cancelled' WHERE BookingID=?";
         pst = connection.prepareStatement(cmd);
         pst.setInt(1, bookingId);
         int rowsAffected = pst.executeUpdate();
-        return rowsAffected > 0;
+        if (rowsAffected == 0) { 
+            throw new BookingNotFoundExceptionMain("Booking not found for bookingId: " + bookingId);
+        }
+        
+        return true;
     }
 
     @Override
@@ -85,4 +90,4 @@ public class BookingDaoImpl implements BookingDao {
         return bookings;
     }
 
-}
+} 

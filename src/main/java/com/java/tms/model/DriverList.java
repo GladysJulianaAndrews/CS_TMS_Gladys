@@ -1,5 +1,7 @@
 package com.java.tms.model;
 
+import java.util.Objects;
+
 public class DriverList {
 
 	private int Driverid;
@@ -29,5 +31,22 @@ public class DriverList {
 		Tripid = tripid;
 	}
 	
-	
+	@Override
+    public int hashCode() {
+        return Objects.hash(Driverid, Tripid);
+    }
+
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        DriverList that = (DriverList) obj;
+        return Driverid == that.Driverid && Tripid == that.Tripid;
+    }
 }
+

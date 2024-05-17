@@ -21,7 +21,7 @@ public class TripsScheduleMain {
         int vehicleId = sc.nextInt();
         System.out.println("Route ID: ");
         int routeId = sc.nextInt();
-        sc.nextLine(); // Consume newline
+        sc.nextLine(); 
         System.out.println("Departure Date (YYYY-MM-DD HH:MM:SS): ");
         String departureDateTime = sc.nextLine();
         System.out.println("Arrival Date (YYYY-MM-DD HH:MM:SS): ");

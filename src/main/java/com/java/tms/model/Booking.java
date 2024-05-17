@@ -1,5 +1,7 @@
 package com.java.tms.model;
 
+import java.util.Objects;
+
 public class Booking {
 
 	private int bookingid;
@@ -54,8 +56,28 @@ public class Booking {
 	}
 	
 		
-	
-	
-	
-	
+	@Override
+    public int hashCode() {
+        return Objects.hash(bookingid, tripid, passengerid, bookingdate, status);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Booking booking = (Booking) obj;
+        return bookingid == booking.bookingid &&
+               tripid == booking.tripid &&
+               passengerid == booking.passengerid &&
+               Objects.equals(bookingdate, booking.bookingdate) &&
+               Objects.equals(status, booking.status);
+    }
 }
+	
+	
+	
+

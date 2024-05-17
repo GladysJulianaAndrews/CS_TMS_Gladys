@@ -1,5 +1,7 @@
 package com.java.tms.dao;
 
+import com.java.myexceptions.BookingNotFoundExceptionMain;
+import com.java.myexceptions.VechileNotFoundException;
 import com.java.tms.main.*;
 
 public class TransportManagementServiceDaoImpl implements TransportManagementServiceDao {
@@ -25,7 +27,7 @@ public class TransportManagementServiceDaoImpl implements TransportManagementSer
     }
 
     @Override
-    public void updateVehicle() {
+    public void updateVehicle() throws VechileNotFoundException {
         vehiclesUpdateMain.updateVehicleLogic();
         System.out.println("Update Vehicle method called.");
     }
@@ -55,7 +57,7 @@ public class TransportManagementServiceDaoImpl implements TransportManagementSer
     }
 
     @Override
-    public void cancelBooking() {
+    public void cancelBooking() throws BookingNotFoundExceptionMain {
         bookingCancelMain.cancelBookingLogic();
         System.out.println("Cancel Booking method called.");
     }
